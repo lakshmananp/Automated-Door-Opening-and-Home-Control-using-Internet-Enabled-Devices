@@ -1,0 +1,46 @@
+const int ledPin = 12,ledPin1 = 13,ledPin2 = 11;
+void setup() 
+{ 
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT);
+  
+  // prints title with ending line break 
+  Serial.println("Pinky's echo-program"); 
+ 
+  // wait for the long string to be sent 
+  delay(100); 
+}
+ 
+void loop() {
+  byte incomingByte;
+
+      // send data only when you receive data:
+      if (Serial.available() > 0) {
+            // read the incoming byte:
+            incomingByte = Serial.read();
+ if (incomingByte == 'B') {
+      digitalWrite(ledPin, HIGH);
+    } 
+    // if it's an L (ASCII 76) turn off the LED:
+    if (incomingByte == 'b') {
+      digitalWrite(ledPin, LOW);
+    }
+    if (incomingByte == 'W') {
+      digitalWrite(ledPin1, HIGH);
+    } 
+    // if it's an L (ASCII 76) turn off the LED:
+    if (incomingByte == 'w') {
+      digitalWrite(ledPin1, LOW);
+    }
+    if (incomingByte == 'R') {
+      digitalWrite(ledPin2, HIGH);
+    } 
+    // if it's an L (ASCII 76) turn off the LED:
+    if (incomingByte == 'r') {
+      digitalWrite(ledPin2, LOW);
+    }
+            // say what you got:
+            Serial.print("I received: ");
+            Serial.println(incomingByte);
+      }
+}
